@@ -1,22 +1,21 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { FaBarsStaggered, FaXmark } from "react-icons/fa6"
 import { FiMapPin, FiSearch } from "react-icons/fi"
 import { Link, NavLink } from "react-router-dom"
+import { DataContext } from "../Context/DataContext"
 
 const Navbar = () => {
+    // Context api use
+    const {handleInputChange,query} =useContext(DataContext)
+ 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+          
     const handleMenuToggler = () => {
         setIsMenuOpen(!isMenuOpen)
     }
 
-    const [query, setQuery] = useState("")
-    const handleInputChange = (event) => {
-        setQuery(event.target.value)
-
-    }
-    console.log(query);
+ 
     // nav items
     const navItems = [
         { path: '/', title: "Start a Search" },
@@ -116,6 +115,7 @@ const Navbar = () => {
               <FiMapPin className="text-gray-500 mr-2 ml-2" />
               <input
                 type="text"
+               
                 placeholder="Enter location"
                 className="px-2 py-2 w-full focus:outline-none"
               />
